@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="../../header.js"></script>
+    <script src="../checkCountry.js"></script>
+    <style>
+        
+        .main {
+            flex: 1;
+        }
+        .product {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .product-thumb-info {
+            display: block;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .product-thumb-info-image img {
+            max-width: 100%; /* Ensure the image doesn't overflow its container */
+            height: 50%; /* Maintain aspect ratio */
+            display: inline-block;
+            vertical-align: middle; /* Align vertically center */
+        }
+    </style>
+</head>
+<body>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var currentUrl = new URL(window.location.href);
+            var cat = currentUrl.searchParams.get("cat");
+            // Assuming you want to display a specific image path
+            var imageURL = '../../img/delivery/tablesDesk.jpg';
+            
+            var htmlTxt = '';
+            htmlTxt += `
+                <li class="col-md-3 col-sm-6 col-xs-12 product">
+                    <span class="product-thumb-info">
+                        <span class="product-thumb-info-image">
+                            <img alt="" class="img-responsive" src="${imageURL}">
+                        </span>
+                    </span>
+                </li>`;
+            document.getElementById("furnituresDisplay").innerHTML = htmlTxt;
+            document.getElementById("categoryTitle").innerHTML = cat;
+        });
+    </script>
+    <div class="body">
+        <script src="menu2.js"></script>
+        <div class="body">
+            <div role="main" class="main">
+                <section class="page-top">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>Delivery</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <div class="container">
+                    <script src="/displayMessageLong.js"></script>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h2 class="shorter"><strong id="categoryTitle"></strong></h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <ul id="furnituresDisplay" class="products product-thumb-info-list"
+                            style="list-style-type: none; margin-left: -3%;" data-plugin-masonry></ul>
+                    </div>
+                    <hr class="tall">
+                </div>
+            </div>
+        </div>
+        <script src="../footer.js"></script>
+    </div>
+</body>
+</html>
