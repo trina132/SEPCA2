@@ -398,6 +398,7 @@ var memberDB = {
                                 + 'Activation Code: ' + member.PASSWORDRESET + '\n\n'
                                 + 'Link to reset your password: http://' + url + '/memberResetPassword.html?email=' + email
                             };
+                            console.log(mailOptions);
                             emailer.sendMail(mailOptions, function(error, info){
                                 if (error) {
                                     console.log(error);

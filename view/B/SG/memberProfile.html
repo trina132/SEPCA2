@@ -29,7 +29,8 @@
             var member = null;
             document.addEventListener('DOMContentLoaded', function(){
                 member = JSON.parse(sessionStorage.getItem("member"));
-
+                var memberEmail = sessionStorage.getItem("memberEmail");
+                document.getElementById("email").value = memberEmail;
                 if(member.sla == 1) {
                     document.getElementById("serviceLevelAgreement").checked = true;
                 }
@@ -240,7 +241,7 @@
 
                     if(ok) {
                         var data = {
-                            email: document.getElementById("email").value,
+                            email: memberEmail,
                             name: document.getElementById("name").value,
                             phone: document.getElementById("phone").value,
                             country: document.getElementById("country").value,
@@ -614,11 +615,11 @@
                                         </div>
                                         <div class="form-group">
                                             <label>New Password<br/>Password to be at least 8 characters long.</label>
-                                            <input class="form-control" type="password" id="password">
+                                            <input class="form-control" type="password" id="password" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Re-enter New Password</label>
-                                            <input class="form-control" type="password" id="repassword">
+                                            <input class="form-control" type="password" id="repassword" required>
                                         </div>
                                         <div class="panel-footer" style="padding-bottom: 0px;">
                                             <div class="row">
