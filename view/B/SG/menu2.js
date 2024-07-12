@@ -3,6 +3,7 @@ document.write('\
 <script>\
     document.addEventListener("DOMContentLoaded", function(){\
         var memberEmail = sessionStorage.getItem("memberEmail");\
+        var memberName = sessionStorage.getItem("memberName");\
         if(memberEmail == null || memberEmail == "") {\
             document.getElementById("menuLoggedOut").setAttribute("style", "display:block");\
             document.getElementById("menuLoggedIn").setAttribute("style", "display:none");\
@@ -10,11 +11,13 @@ document.write('\
         else {\
             document.getElementById("menuLoggedOut").setAttribute("style", "display:none");\
             document.getElementById("menuLoggedIn").setAttribute("style", "display:block");\
-            var welcomeText = sessionStorage.getItem("memberName");\
+            var welcomeText = memberName;\
             if(welcomeText == "null") {\
                 welcomeText = "";\
             }\
             document.getElementById("memberName").innerHTML = "Welcome " + welcomeText + "!";\
+            var profileLink = document.getElementById("profileLink");\
+            profileLink.innerHTML = "<i class=\'icon icon-user\'></i> " + (memberName ? memberName : "Profile");\
         }\
         document.getElementById("tableDeskLink").setAttribute("href", "/B/' + countryPrefix + '/furnitureCategory.html?cat=" + encodeURIComponent("Tables & Desks"));\
         document.getElementById("bedMattressLink").setAttribute("href", "/B/' + countryPrefix + '/furnitureCategory.html?cat=" + encodeURIComponent("Beds & Mattresses"));\
@@ -65,7 +68,7 @@ document.write('\
                         <a href="/B/' + countryPrefix + '/shoppingCart.html"><i class="icon icon-shopping-cart"></i>Shopping Cart</a>\
                     </li>\
                     <li>\
-                        <a href="/B/' + countryPrefix + '/memberProfile.html"><i class="icon icon-user"></i>Profile</a>\
+                        <a id="profileLink" href="/B/' + countryPrefix + '/memberProfile.html"><i class="icon icon-user"></i>Profile</a>\
                     </li>\
                     <li>\
                         <a href="/B/' + countryPrefix + '/contactUs.html"><i class="icon icon-shopping-cart"></i>Contact Us</a>\

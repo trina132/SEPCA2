@@ -334,7 +334,7 @@ var memberDB = {
                     var income = details.income;
                     var sla = details.sla;
                     var password = details.password;
-                    if(password == null || password == '') {
+                    if(password == null || password == '') { // if password present
                         var sql = 'UPDATE memberentity SET NAME=?, PHONE=?, CITY=?, ADDRESS=?, SECURITYQUESTION=?,'
                         + 'SECURITYANSWER=?, AGE=?, INCOME=?, SERVICELEVELAGREEMENT=? WHERE EMAIL=?';
                         var sqlArgs = [name,phone,country,address,securityQuestion,securityAnswer,age,income,sla,email];
@@ -350,7 +350,7 @@ var memberDB = {
                             }
                         });
                     }
-                    else {
+                    else { //if password not present
                         bcrypt.hash(password, 5, function(err, hash) {
                             var sql = 'UPDATE memberentity SET NAME=?, PHONE=?, CITY=?, ADDRESS=?, SECURITYQUESTION=?,'
                                 + 'SECURITYANSWER=?, AGE=?, INCOME=?, SERVICELEVELAGREEMENT=?, PASSWORDHASH=? WHERE EMAIL=?';

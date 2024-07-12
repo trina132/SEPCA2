@@ -191,8 +191,6 @@ app.put('/api/activateMemberAccount', jsonParser, function (req, res) {
 });
 
 app.put('/api/updateMember', [middleware.checkToken, jsonParser], function (req, res) {
-    console.log(req.body)
-
     member.updateMember(req.body)
         .then((result) => {
             if(result.success) {
