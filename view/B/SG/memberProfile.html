@@ -31,6 +31,7 @@
             var member = null;
             document.addEventListener('DOMContentLoaded', function(){
                 member = JSON.parse(sessionStorage.getItem("member"));
+                console.log(member.id)
                 document.getElementById("email").value = memberEmail;
                 if(member.sla == 1) {
                     document.getElementById("serviceLevelAgreement").checked = true;
@@ -195,9 +196,15 @@
                 var oldPassword = document.getElementById('oldPassword').value;
                 var password = document.getElementById("password").value;
                 var repassword = document.getElementById("repassword").value;
+                var passwordInput = document.getElementById("password");
+                var repasswordInput = document.getElementById("repassword");
 
                 var ok = true;
                 if (document.getElementById("profileForm").checkValidity()) {
+                    if (oldPassword !== "" && (password === "" || repassword === "")) {
+                        alert("Please fill in all values in password form");
+                        return;
+                    }
                     if (oldPassword !== "" && password !== "" && repassword !== "") {
                         var memberData = {
                             id: member.id,
@@ -245,7 +252,6 @@
                         password = null;
                         repassword = null;
                     }
-
                     var data = {
                         email: memberEmail,
                         name: document.getElementById("name").value,
@@ -643,11 +649,11 @@
                                         </div>
                                         <div class="form-group">
                                             <label>New Password<br/>Password to be at least 8 characters long.</label>
-                                            <input class="form-control" type="password" id="password" required>
+                                            <input class="form-control" type="password" id="password">
                                         </div>
                                         <div class="form-group">
                                             <label>Re-enter New Password</label>
-                                            <input class="form-control" type="password" id="repassword" required>
+                                            <input class="form-control" type="password" id="repassword">
                                         </div>
                                         <div class="panel-footer" style="padding-bottom: 0px;">
                                             <div class="row">
