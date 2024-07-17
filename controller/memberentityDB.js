@@ -23,7 +23,7 @@ app.get('/api/getMember', function (req, res) {
         })
         .catch((err) => {
             console.log(err);
-            res.status(500).send("Failed to get member");
+            res.status(500).send("Failed to get member")
         });
 });
 
