@@ -32,6 +32,7 @@ app.get('/api/getBoughtItem/:id', middleware.checkToken, function (req, res) {
     member.getBoughtItem(id)
         .then((result) => {
             res.send(result);
+            console.log(result)
         })
         .catch((err) => {
             console.log(err);
