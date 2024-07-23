@@ -18,9 +18,10 @@
                     return response.json();
                 }).then(function (data) {
                     var htmlTxt = '';
-                    var furniture = data[0];
+                    var furnitures = data;
+                    furnitures.forEach(furniture => {
                     const isFavourite = favourites.find(item => item === furniture.sku);
-                    htmlTxt += `
+                        htmlTxt += `
                         <li class="col-md-3 col-sm-6 col-xs-12 product" style="padding-bottom: 1%;padding-top: 2%;">
                             <span class="product-thumb-info">
                                 <span class="product-thumb-info-image">
@@ -59,26 +60,26 @@
                                         <input type="hidden" name="sku" value="${furniture.sku}"/>
                                         <input type="submit" class="btn btn-primary btn-block" value="More Details"/>
                                     </form>`;
-                    //check if user is logged in
-                    var memberEmail = sessionStorage.getItem('memberEmail');
-                    //display 'Add To Cart' button only if user is logged in
-                    if (memberEmail != null && memberEmail != '') {
-                        htmlTxt += '<button class="btn btn-primary btn-block" onclick="addToCart(\'' + furniture.sku +
-                            '\',\'' + furniture.id + '\',' + furniture.price + ',\'' + furniture.name + '\',\'' + furniture.imageURL +
-                            '\')">Add To Cart</button>';
-                    }
-                    htmlTxt += '</span></span></li>';
-                    document.getElementById("furnituresDisplay").innerHTML = htmlTxt;
-                    document.getElementById("categoryTitle").innerHTML = cat;
 
-                    document.querySelectorAll('.heart-button1').forEach(function (button) {
-                        button.addEventListener('click', function (event) {
-                            var furnitureDetails = event.currentTarget.getAttribute('data-sku');
-                            toggleFavourite(furnitureDetails, event.currentTarget);
+                        //check if user is logged in
+                        var memberEmail = sessionStorage.getItem('memberEmail');
+                        //display 'Add To Cart' button only if user is logged in
+                        if (memberEmail != null && memberEmail != '') {
+                            htmlTxt += '<button class="btn btn-primary btn-block" onclick="addToCart(\'' + furniture.sku +
+                                '\',\'' + furniture.id + '\',' + furniture.price + ',\'' + furniture.name + '\',\'' + furniture.imageURL +
+                                '\')">Add To Cart</button>';
+                        }
+                        htmlTxt += '</span></span></li>';
+                        document.getElementById("furnituresDisplay").innerHTML = htmlTxt;
+                        document.getElementById("categoryTitle").innerHTML = cat;
+
+                        document.querySelectorAll('.heart-button1').forEach(function (button) {
+                            button.addEventListener('click', function (event) {
+                                var furnitureDetails = event.currentTarget.getAttribute('data-sku');
+                                toggleFavourite(furnitureDetails, event.currentTarget);
+                            });
                         });
-                    });
-
-
+                    })
                 }).catch(function (error) {
                     console.log(error);
                 });
