@@ -3,7 +3,7 @@ document.write('\
 <script>\
     document.addEventListener("DOMContentLoaded", function(){\
         var memberEmail = sessionStorage.getItem("memberEmail");\
-        var memberName = sessionStorage.getItem("memberName");\
+        var memberName = sessionStorage.getItem("memberName")|| "Profile";\
         if(memberEmail == null || memberEmail == "") {\
             document.getElementById("menuLoggedOut").setAttribute("style", "display:block");\
             document.getElementById("menuLoggedIn").setAttribute("style", "display:none");\
@@ -17,7 +17,7 @@ document.write('\
             }\
             document.getElementById("memberName").innerHTML = "Welcome " + welcomeText + "!";\
             var profileLink = document.getElementById("profileLink");\
-            profileLink.innerHTML = "<i class=\'icon icon-user\'></i> " + (memberName ? memberName : "Profile");\
+            profileLink.innerHTML = "<i class=\'icon icon-user\'></i> " + memberName;\
         }\
         document.getElementById("tableDeskLink").setAttribute("href", "/B/' + countryPrefix + '/furnitureCategory.html?cat=" + encodeURIComponent("Tables & Desks"));\
         document.getElementById("bedMattressLink").setAttribute("href", "/B/' + countryPrefix + '/furnitureCategory.html?cat=" + encodeURIComponent("Beds & Mattresses"));\

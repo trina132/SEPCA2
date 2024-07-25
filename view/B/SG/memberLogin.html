@@ -55,7 +55,7 @@
                                         sessionStorage.setItem('memberEmail', email);
                                         sessionStorage.setItem('memberName', member.name);
                                         sessionStorage.setItem('member', JSON.stringify(member));
-
+                                        alert("Successfully logged in! Redirecting you...")
                                         //redirect to memberProfile.html
                                         window.location.href = "/B/" + countryPrefix + "/memberProfile.html";
                                     }).catch(function(error) {
