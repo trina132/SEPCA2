@@ -193,10 +193,13 @@
             if (document.getElementById("profileForm").checkValidity()) {
                 if (oldPassword !== "" && (password === "" || repassword === "")) {
                     alert("Please fill in all values in password form");
+                    if (oldPassword == password) {
+                        alert("New password cannot be the same as old password.");
+                        return;
+                    }
                     return;
-                } else if (oldPassword == password) {
-                    alert("New password cannot be the same as old password.")
-                }
+                } 
+                
                 if (oldPassword !== "" && password !== "" && repassword !== "") {
                     var memberData = {
                         id: member.id,
