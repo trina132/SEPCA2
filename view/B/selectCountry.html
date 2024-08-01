@@ -30,9 +30,9 @@
                                     </div>
                                     <div class="col-md-3">
                                         <h1 style="color: white">ASIA</h1>
-                                        <a href="./SG/index.html" onclick="countrySelected('Singapore', 'SG')">
+                                        <div onclick="countrySelected('Singapore', 'SG')">
                                             <h3>Singapore</h3>
-                                        </a>
+                                        </div>
                                         <a href="#">
                                             <h3>Indonesia</h3>
                                         </a>
@@ -111,7 +111,7 @@
             })).then(function (response) {
                 return response.json();
             }).then(function (data) {
-                localStorage.setItem('storesInCountry', JSON.stringify(data));
+                localStorage.setItem('storesInCountry', JSON.stringify(data))
                 window.location.href = '/B/' + urlPrefix + '/index.html';
             }).catch(function(error) {
                 console.log(error);

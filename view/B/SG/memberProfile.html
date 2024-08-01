@@ -191,7 +191,7 @@
 
             var ok = true;
             if (document.getElementById("profileForm").checkValidity()) {
-                if (oldPassword !== "" && (password === "" || repassword === "")) {
+                if ((oldPassword !== "" && (password === "" || repassword === "")) || (password !== "" || repassword !== "")) {
                     alert("Please fill in all values in password form");
                     if (oldPassword == password) {
                         alert("New password cannot be the same as old password.");

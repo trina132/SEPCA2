@@ -26,7 +26,7 @@
                         + furniture.sku + '\',\'' + furniture.id + '\',' + furniture.price + ',\'' + furniture.name + '\',\''
                         + furniture.imageURL + '\')">Add To Cart</button>';
                     }
-               
+                    document.getElementById("description").innerHTML = furniture.description;
                     document.getElementById("categoryLink").innerHTML = furniture.category;
                     document.getElementById("categoryLink").setAttribute('href', '/B/' + countryPrefix
                         + '/furnitureCategory.html?cat=' + encodeURIComponent(furniture.category));
@@ -34,6 +34,7 @@
                     var selectOptions = '<option></option>';
                     var storeID = currentUrl.searchParams.get("storeID");
                     var storesInCountry = JSON.parse(localStorage.getItem('storesInCountry'));
+                    console.log(storesInCountry)
                     for (i = 0; i < storesInCountry.length; i++) {
                         var store = storesInCountry[i];
                         if(store.id == storeID) {
@@ -44,7 +45,6 @@
                         }
                     }
                     document.getElementById("storeID").innerHTML = selectOptions;
-
                     var quantityDivTxt = 'Status: ';
                     var itemQty = currentUrl.searchParams.get("itemQty");
                     if(itemQty != null) {
@@ -130,23 +130,23 @@
 
             function CheckItemAvail() {
                 var storeId = document.getElementById("storeID").value;
-                if(storeId != null && storeId != '') {
-                    fetch(new Request('/api/getItemQuantity?sku=' + sku + '&storeId=' + storeId,
-                    {
+                if (storeId != null && storeId != '') {
+                    fetch(new Request('/api/getItemQuantity?sku=' + sku + '&storeId=' + storeId, {
                         method: 'GET'
                     })).then(function (response) {
                         return response.json();
                     }).then(function (data) {
                         var quantity = data[0].sum;
-                        if(quantity == null || quantity == '') {
+                        if (quantity == null || quantity == '') {
                             quantity = 0;
                         }
-                        //refresh page with item's quantity in the query parameter to display to the user
                         var url = window.location.origin + window.location.pathname;
                         window.location.href = url + '?sku=' + sku + '&itemQty=' + quantity + '&storeID=' + storeId;
-                    }).catch(function(error) {
+                    }).catch(function (error) {
                         console.log(error);
                     });
+                } else {
+                    alert("Please pick an option.");
                 }
             }
         </script>

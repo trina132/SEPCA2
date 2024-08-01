@@ -43,7 +43,7 @@
                             }).then(function (member) {
                                 //if account is authenticated
                                 if (member.accountActivationStatus == 1) {
-                                    sessionStorage.setItem("token", data.token);
+                                    sessionStorage.setItem("token", data.token)
                                     //Get Member
                                     fetch(new Request('/api/getMember?email=' + email,
                                     {
